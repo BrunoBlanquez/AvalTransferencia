@@ -34,6 +34,14 @@ public class Transfer {
         this.dataTransferencia = dataTransferencia;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getContaOrigem() {
         return contaOrigem;
     }
@@ -82,22 +90,28 @@ public class Transfer {
         this.dataTransferencia = dataTransferencia;
     }
 
-    private BigDecimal calcularTaxa(long dias, BigDecimal valor) {
+    public void definirTaxa(long dias) {
         switch (definirIntervaloParaTaxas(dias)) {
             case 0:
-                return new BigDecimal("3.00").add(valor.multiply(new BigDecimal("0.025")));
+                this.taxa = new BigDecimal("3.00").add(this.valor.multiply(new BigDecimal("0.025")));
+                break;
             case 1:
-                return new BigDecimal("12.00");
+                this.taxa = new BigDecimal("12.00");
+                break;
             case 2:
-                return valor.multiply(new BigDecimal("0.082"));
+                this.taxa = valor.multiply(new BigDecimal("0.082"));
+                break;
             case 3:
-                return valor.multiply(new BigDecimal("0.069"));
+                this.taxa = valor.multiply(new BigDecimal("0.069"));
+                break;
             case 4:
-                return valor.multiply(new BigDecimal("0.047"));
+                this.taxa = valor.multiply(new BigDecimal("0.047"));
+                break;
             case 5:
-                return valor.multiply(new BigDecimal("0.017"));
+                this.taxa = valor.multiply(new BigDecimal("0.017"));
+                break;
             default:
-                return null;
+                throw new IllegalArgumentException("Nenhuma taxa aplicável para esse intervalo de dias.");
         }
     }
 
