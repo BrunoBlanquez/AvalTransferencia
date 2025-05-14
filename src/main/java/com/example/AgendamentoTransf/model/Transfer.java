@@ -93,7 +93,7 @@ public class Transfer {
     public void definirTaxa(long dias) {
         switch (definirIntervaloParaTaxas(dias)) {
             case 0:
-                this.taxa = new BigDecimal("3.00").add(valor.multiply(new BigDecimal("0.025")));
+                this.taxa = new BigDecimal("3.00").add(this.valor.multiply(new BigDecimal("0.025")));
                 break;
             case 1:
                 this.taxa = new BigDecimal("12.00");

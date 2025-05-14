@@ -20,7 +20,13 @@ public class TransferService {
 
     public TransferResponse agendar(TransferRequest dto) {
         LocalDate hoje = LocalDate.now();
-        long dias = ChronoUnit.DAYS.between(LocalDate.now(), dto.getDataTransferencia());
+        LocalDate dataTransferencia = dto.getDataTransferencia();
+
+        if (dataTransferencia.isBefore(hoje)) {
+            throw new IllegalArgumentException("A data da transferência não pode ser anterior à data atual.");
+        }
+
+        long dias = ChronoUnit.DAYS.between(hoje, dataTransferencia);
 
         if (dias > 50) {
             throw new IllegalArgumentException("Nenhuma taxa aplicável para esse intervalo de dias.");
@@ -31,7 +37,7 @@ public class TransferService {
         transfer.setContaDestino(dto.getContaDestino());
         transfer.setValor(dto.getValor());
         transfer.setDataAgendamento(hoje);
-        transfer.setDataTransferencia(dto.getDataTransferencia());
+        transfer.setDataTransferencia(dataTransferencia);
 
         transfer.definirTaxa(dias);
 
@@ -44,5 +50,4 @@ public class TransferService {
                 .map(TransferResponse::new)
                 .collect(Collectors.toList());
     }
-
 }
