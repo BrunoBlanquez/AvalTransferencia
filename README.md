@@ -9,9 +9,9 @@ Este projeto faz parte de um teste técnico para um processo seletivo e é compo
 
 ### 🖥️ Backend (Spring Boot)
 
-1. Acesse o diretório do backend:
+1. Acesse o diretório do backend:  
    cd backend
-2. Compile e execute o projeto:
+2. Compile e execute o projeto:  
    ./mvnw spring-boot:run
-3. A API estará disponível em:
+3. A API estará disponível em:  
    http://localhost:8080
