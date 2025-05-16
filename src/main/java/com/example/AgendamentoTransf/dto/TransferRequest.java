@@ -4,24 +4,24 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class TransferRequest {
-    private String contaOrigem;
-    private String contaDestino;
+    private Long contaOrigem;
+    private Long contaDestino;
     private BigDecimal valor;
     private LocalDate dataTransferencia;
 
-    public String getContaOrigem() {
+    public Long getContaOrigem() {
         return contaOrigem;
     }
 
-    public void setContaOrigem(String contaOrigem) {
+    public void setContaOrigem(Long contaOrigem) {
         this.contaOrigem = contaOrigem;
     }
 
-    public String getContaDestino() {
+    public Long getContaDestino() {
         return contaDestino;
     }
 
-    public void setContaDestino(String contaDestino) {
+    public void setContaDestino(Long contaDestino) {
         this.contaDestino = contaDestino;
     }
 

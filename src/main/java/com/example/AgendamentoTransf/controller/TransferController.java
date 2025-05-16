@@ -4,6 +4,7 @@ import com.example.AgendamentoTransf.dto.TransferRequest;
 import com.example.AgendamentoTransf.dto.TransferResponse;
 import com.example.AgendamentoTransf.model.Transfer;
 import com.example.AgendamentoTransf.service.TransferService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class TransferController {
     }
 
     @PostMapping
-    public ResponseEntity<?> agendar(@RequestBody TransferRequest request) {
+    public ResponseEntity<?> agendar(@Valid @RequestBody TransferRequest request) {
         try {
             TransferResponse response = service.agendar(request);
             return ResponseEntity.ok(response);

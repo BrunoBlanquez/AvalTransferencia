@@ -7,8 +7,8 @@ import java.time.LocalDate;
 
 public class TransferResponse {
     private Long id;
-    private String contaOrigem;
-    private String contaDestino;
+    private Long contaOrigem;
+    private Long contaDestino;
     private BigDecimal valor;
     private BigDecimal taxa;
     private LocalDate dataAgendamento;
@@ -25,11 +25,11 @@ public class TransferResponse {
         this.dataTransferencia = transfer.getDataTransferencia();
     }
 
-    public String getContaOrigem() {
+    public Long getContaOrigem() {
         return contaOrigem;
     }
 
-    public String getContaDestino() {
+    public Long getContaDestino() {
         return contaDestino;
     }
 

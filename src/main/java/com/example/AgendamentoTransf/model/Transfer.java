@@ -4,6 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,9 +19,16 @@ public class Transfer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String contaOrigem;
-    private String contaDestino;
+    @NotNull(message = "Conta de origem é obrigatória")
+    private Long contaOrigem;
+
+    @NotNull(message = "Conta de destino é obrigatória")
+    private Long contaDestino;
+
+    @NotNull(message = "Valor é obrigatório")
+    @Digits(integer = 10, fraction = 2, message = "Valor deve ter no máximo 10 dígitos inteiros e 2 decimais")
     private BigDecimal valor;
+
     private BigDecimal taxa;
     private LocalDate dataAgendamento;
     private LocalDate dataTransferencia;
@@ -25,7 +36,7 @@ public class Transfer {
     public Transfer() {
     }
 
-    public Transfer(String contaOrigem, String contaDestino, BigDecimal valor, BigDecimal taxa, LocalDate dataAgendamento, LocalDate dataTransferencia) {
+    public Transfer(Long contaOrigem, Long contaDestino, BigDecimal valor, BigDecimal taxa, LocalDate dataAgendamento, LocalDate dataTransferencia) {
         this.contaOrigem = contaOrigem;
         this.contaDestino = contaDestino;
         this.valor = valor;
@@ -42,19 +53,19 @@ public class Transfer {
         this.id = id;
     }
 
-    public String getContaOrigem() {
+    public Long getContaOrigem() {
         return contaOrigem;
     }
 
-    public void setContaOrigem(String contaOrigem) {
+    public void setContaOrigem(Long contaOrigem) {
         this.contaOrigem = contaOrigem;
     }
 
-    public String getContaDestino() {
+    public Long getContaDestino() {
         return contaDestino;
     }
 
-    public void setContaDestino(String contaDestino) {
+    public void setContaDestino(Long contaDestino) {
         this.contaDestino = contaDestino;
     }
 
